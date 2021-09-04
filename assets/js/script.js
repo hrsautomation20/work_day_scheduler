@@ -9,6 +9,7 @@ window.onload = function () {
   threePM();
   fourPM();
   fivePM();
+  clearSchedule();
 };
 
 var timeDisplayEl = $("#time-display");
@@ -17,6 +18,7 @@ function displayTime() {
   var rightNow = moment().format("MMMM Do YYYY, h:mm:ss a");
   timeDisplayEl.text(rightNow);
 }
+
 var now = new Date().getHours();
 
 function colorCode() {
@@ -110,7 +112,6 @@ function tenAM() {
 
   function updateOutput2() {
     localStorage.setItem("content2", input_textarea2.value);
-
     output_div2.textContent = input_textarea2.value;
   }
 }
@@ -233,4 +234,13 @@ function fivePM() {
     output_div9.textContent = input_textarea9.value;
   }
 }
+
+//Clear all events form local storage
+function clearSchedule() {
+  $("#clear-button").on("click", function () {
+    window.localStorage.clear();
+    window.onload();
+  });
+}
+
 setInterval(displayTime, 1000);
