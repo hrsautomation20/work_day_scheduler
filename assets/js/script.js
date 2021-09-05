@@ -12,6 +12,7 @@ window.onload = function () {
   clearSchedule();
 };
 
+//When the Scheduler is open display current date and time
 var timeDisplayEl = $("#time-display");
 
 function displayTime() {
@@ -19,6 +20,7 @@ function displayTime() {
   timeDisplayEl.text(rightNow);
 }
 
+// Show the color coded timeblock to indicate the past, present or future (Past=Gray, Present=Red, Future=Green)
 var now = new Date().getHours();
 
 function colorCode() {
@@ -87,13 +89,17 @@ function colorCode() {
   }
 }
 
+//Textarea to enter the event details, Save button will save the event to localStroage, and show the output back to the screen
 function nineAM() {
   var input_textarea = document.querySelector("#comment9am");
   var output_div = document.querySelector("#comment9am");
   var save_button = document.querySelector("#button9am");
+
   save_button.addEventListener("click", updateOutput);
+
   output_div.textContent = localStorage.getItem("content");
   input_textarea.value = localStorage.getItem("content");
+
   function updateOutput() {
     localStorage.setItem("content", input_textarea.value);
     output_div.textContent = input_textarea.value;
@@ -235,7 +241,7 @@ function fivePM() {
   }
 }
 
-//Clear all events form local storage
+//Clear all events form local storage and reload window.onload
 function clearSchedule() {
   $("#clear-button").on("click", function () {
     window.localStorage.clear();
